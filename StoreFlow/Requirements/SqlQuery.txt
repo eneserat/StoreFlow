@@ -172,3 +172,26 @@ INSERT INTO Orders (ProductId, CustomerId, OrderCount, UnitPrice, TotalPrice, Or
 (48, 8, 3, 120, 360, '2026-05-20'),
 (49, 9, 2, 200, 400, '2026-05-22'),
 (50, 10, 4, 350, 1400, '2026-05-25');
+
+
+
+INSERT INTO ToDos (Description, Status) VALUES ('Alisa ile toplantı yap', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('John''u ara', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Fatura oluştur', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Ekstreleri yazdır', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Sunum için hazırlan', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Çocukları okuldan al', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Yeni müşteri kaydı oluştur', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Stokları kontrol et', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Siparişleri gözden geçir', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Kasayı kapat', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Günlük rapor hazırla', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Tedarikçiye mail at', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Yeni ürün ekle', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('İade işlemlerini kontrol et', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Kargo durumlarını güncelle', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Personel girişlerini kontrol et', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Dashboard verilerini yenile', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Veritabanı yedeği al', 0);
+INSERT INTO ToDos (Description, Status) VALUES ('Müşteri geri bildirimlerini incele', 1);
+INSERT INTO ToDos (Description, Status) VALUES ('Haftalık plan oluştur', 0);

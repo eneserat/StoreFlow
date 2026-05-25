@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreFlow.Context;
 
@@ -11,9 +12,11 @@ using StoreFlow.Context;
 namespace StoreFlow.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20260521103430_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,50 +169,6 @@ namespace StoreFlow.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("StoreFlow.Entities.ProductStockHistory", b =>
-                {
-                    b.Property<int>("ProductStockHistoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductStockHistoryId"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductStock")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductStockHistoryId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductStockHistories");
-                });
-
-            modelBuilder.Entity("StoreFlow.Entities.ToDo", b =>
-                {
-                    b.Property<int>("ToDoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoId"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("ToDoId");
-
-                    b.ToTable("ToDos");
-                });
-
             modelBuilder.Entity("StoreFlow.Entities.Order", b =>
                 {
                     b.HasOne("StoreFlow.Entities.Customer", "Customer")
@@ -238,17 +197,6 @@ namespace StoreFlow.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("StoreFlow.Entities.ProductStockHistory", b =>
-                {
-                    b.HasOne("StoreFlow.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("StoreFlow.Entities.Category", b =>

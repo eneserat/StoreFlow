@@ -1,0 +1,111 @@
+﻿@using System.Text.Json
+@{
+    Layout = null;
+    var chartData = ViewBag.StockTrend7Days ?? new List<object>();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_HeadDashboardComponentPartial")
+
+<body>
+    <div class="container-scroller">
+
+        @await Component.InvokeAsync("_NavbarDashboardComponentPartial")
+
+        <div class="container-fluid page-body-wrapper">
+
+            @await Component.InvokeAsync("_ThemeSettingsDashboardComponentPartial")
+            @await Component.InvokeAsync("_RightSidebarDashboardComponentPartial")
+            @await Component.InvokeAsync("_SidebarDashboardComponentPartial")
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+                        <h3 class="page-title">Dashboard</h3>
+                    </div>
+
+                    <!-- STATISTICS -->
+                    @await Component.InvokeAsync("_StatisticsWidgetComponentPartial")
+
+                    <!-- CHART -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h4 class="card-title">7 Günlük Stok Trendi</h4>
+                            <canvas id="stockChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- FOOTER -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                            Copyright © 2018
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            Made with <i class="far fa-heart text-danger"></i>
+                        </span>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/vendors/js/vendor.bundle.addons.js"></script>
+
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/js/off-canvas.js"></script>
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/js/hoverable-collapse.js"></script>
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/js/misc.js"></script>
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/js/settings.js"></script>
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/js/todolist.js"></script>
+    <script src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/js/dashboard.js"></script>
+
+    <!-- CHART -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var data = @Html.Raw(JsonSerializer.Serialize(chartData));
+
+        if (!data) data = [];
+
+        var labels = data.map(x =>
+            x && x.date ? new Date(x.date).toLocaleDateString() : ""
+        );
+
+        var values = data.map(x =>
+            x && x.totalStock ? x.totalStock : 0
+        );
+
+        new Chart(document.getElementById("stockChart"), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "7 Gün Stok Trendi",
+                    data: values,
+                    fill: true,
+                    tension: 0.4,
+                    borderColor: "#4CAF50",
+                    backgroundColor: "rgba(76, 175, 80, 0.2)"
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -14,6 +14,7 @@ namespace StoreFlow.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Activity> Activities { get; set; }
-
+        public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<ProductStockHistory> ProductStockHistories { get; set; }
     }
 }
